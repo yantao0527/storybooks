@@ -1,0 +1,1 @@
+docker run -p 27017:27017 -d mongo:3.6-xenial
