@@ -21,8 +21,14 @@ variable "mongodbatlas_user_password" {
   type = string
 }
 
-# cloudflare
+### cloudflare
 
 variable "cloudflare_api_token" {
+  type = string
+}
+
+### GCP
+
+variable "gcp_machine_type" {
   type = string
 }
