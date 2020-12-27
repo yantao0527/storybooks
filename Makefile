@@ -52,8 +52,8 @@ ssh-cmd:
 	  --zone=$(ZONE) \
 	  --command="$(CMD)"
 
-GIT_SHA?=latest
-LOCAL_TAG=storybooks-app:$(GIT_SHA)
+GITHUB_SHA?=latest
+LOCAL_TAG=storybooks-app:$(GITHUB_SHA)
 REMOTE_TAG=gcr.io/$(PROJECT_ID)/$(LOCAL_TAG)
 CONTAINER_NAME=storybooks
 
