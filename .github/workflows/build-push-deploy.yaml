@@ -19,12 +19,12 @@ jobs:
     steps:
     - name：Set env
       run: |-
-        if [ ${GITHUB_REF##*/} = "master" ]; then
+        if [ ${GITHUB_REF} = "refs/heads/master" ]; then
           echo "::set-env name=ENV::staging"
         else
           echo "::set-env name=ENV::prod"
         fi
-        
+
     - name: Checkout
       uses: actions/checkout@v2
 
