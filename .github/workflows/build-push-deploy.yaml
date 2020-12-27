@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name：Set env
+    - name: Set env
       run: echo "ENV=staging" >> $GITHUB_ENV
         # if [ ${GITHUB_REF} = "refs/heads/master" ]; then
         #   echo "ENV=staging" >> $GITHUB_ENV
