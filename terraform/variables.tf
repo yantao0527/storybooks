@@ -27,6 +27,10 @@ variable "cloudflare_api_token" {
   type = string
 }
 
+variable "cloudflare_domain" {
+  type = string
+}
+
 ### GCP
 
 variable "gcp_machine_type" {
