@@ -47,13 +47,13 @@ ssh:
 	  --zone=$(ZONE)
 
 ssh-cmd:
-	gcloud compute ssh $(SSH_STRING) \
+	@gcloud compute ssh $(SSH_STRING) \
 	  --project=$(PROJECT_ID) \
 	  --zone=$(ZONE) \
 	  --command="$(CMD)"
 
-VERSION?=latest
-LOCAL_TAG=storybooks-app:$(VERSION)
+GIT_SHA?=latest
+LOCAL_TAG=storybooks-app:$(GIT_SHA)
 REMOTE_TAG=gcr.io/$(PROJECT_ID)/$(LOCAL_TAG)
 CONTAINER_NAME=storybooks
 
@@ -66,10 +66,13 @@ push:
 
 deploy:
 	$(MAKE) ssh-cmd CMD='docker-credential-gcr configure-docker'
+	@echo "pulling new container imaged..."
 	$(MAKE) ssh-cmd CMD='docker pull $(REMOTE_TAG)'
+	@echo "remove old container..."
 	-$(MAKE) ssh-cmd CMD='docker container stop $(CONTAINER_NAME)'
 	-$(MAKE) ssh-cmd CMD='docker container rm $(CONTAINER_NAME)'
-	$(MAKE) ssh-cmd CMD='\
+	@echo "starting new container..."
+	@$(MAKE) ssh-cmd CMD='\
 	  docker run -d --name=$(CONTAINER_NAME) \
 	  -p 80:3000 \
 	  -e PORT=3000 \
