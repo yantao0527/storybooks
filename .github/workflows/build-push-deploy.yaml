@@ -20,9 +20,9 @@ jobs:
     - name：Set env
       run: |-
         if [ ${GITHUB_REF} = "refs/heads/master" ]; then
-          echo "::set-env name=ENV::staging"
+          echo "ENVstaging" >> $GITHUB_ENV
         else
-          echo "::set-env name=ENV::prod"
+          echo "ENV=prod" >> $GITHUB_ENV
         fi
 
     - name: Checkout
